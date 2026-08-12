@@ -1,4 +1,4 @@
-let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https://script.google.com/macros/s/AKfycbzx9p6K-DBXFgNhTvA-xiVIGmBa6IR8hb3qLIih5b9avnicKgKQhLiNS8FFw4cv9Jyi/exec"; 
+    let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https://script.google.com/macros/s/AKfycbzx9p6K-DBXFgNhTvA-xiVIGmBa6IR8hb3qLIih5b9avnicKgKQhLiNS8FFw4cv9Jyi/exec"; 
 
     if (!localStorage.getItem('tokosiman_gas_url')) {
       localStorage.setItem('tokosiman_gas_url', GOOGLE_APPS_SCRIPT_URL);
@@ -48,14 +48,14 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
       if (!container) return;
 
       let toast = document.createElement('div');
-      let bgClass = "bg-white/95 border border-slate-200 text-slate-800 shadow-xl";
+      let bgClass = "bg-white/90 backdrop-blur-md border border-slate-200 text-slate-800 shadow-xl";
       let icon = '<i class="fa-solid fa-circle-info text-indigo-600"></i>';
 
       if (type === 'success') {
-        bgClass = "bg-emerald-50 border border-emerald-200 text-emerald-800 shadow-xl";
+        bgClass = "bg-emerald-50/90 backdrop-blur-md border border-emerald-200 text-emerald-800 shadow-xl";
         icon = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
       } else if (type === 'error') {
-        bgClass = "bg-rose-50 border border-rose-200 text-rose-800 shadow-xl";
+        bgClass = "bg-rose-50/90 backdrop-blur-md border border-rose-200 text-rose-800 shadow-xl";
         icon = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
       }
 
@@ -679,11 +679,11 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
           if (p === tab) {
             if (el) el.classList.remove('hidden');
             if (nav) nav.className = "flex flex-col items-center justify-center flex-1 py-1.5 text-indigo-700 font-bold text-[10px] gap-1 transition-all no-std-btn";
-            if (desktopNav) desktopNav.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-indigo-700 bg-indigo-50 border border-indigo-100 transition-all text-xs font-bold shadow-xs";
+            if (desktopNav) desktopNav.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-indigo-700 bg-indigo-50/90 backdrop-blur-md border border-indigo-100 transition-all text-xs font-bold shadow-xs";
           } else {
             if (el) el.classList.add('hidden');
             if (nav) nav.className = "flex flex-col items-center justify-center flex-1 py-1.5 text-slate-700 font-medium text-[10px] gap-1 transition-all hover:text-indigo-700 no-std-btn";
-            if (desktopNav) desktopNav.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-white/60 transition-all text-xs font-semibold no-std-btn border border-transparent";
+            if (desktopNav) desktopNav.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-white/60 backdrop-blur-sm transition-all text-xs font-semibold no-std-btn border border-transparent";
           }
         });
       });
@@ -789,7 +789,7 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
       document.querySelectorAll('.tx-filter-btn').forEach(btn => {
         btn.className = btn.dataset.filter === filter ? 
           "tx-filter-btn bg-indigo-600 border border-indigo-600 text-white px-4 py-2 rounded-xl font-bold whitespace-nowrap text-xs shadow-md shadow-indigo-600/20" : 
-          "tx-filter-btn bg-white border border-slate-200 text-slate-700 px-4 py-2 rounded-xl whitespace-nowrap hover:bg-slate-50 text-xs shadow-xs";
+          "tx-filter-btn bg-white/80 backdrop-blur-sm border border-slate-200 text-slate-700 px-4 py-2 rounded-xl whitespace-nowrap hover:bg-slate-50 text-xs shadow-xs";
       });
       renderTransaksi();
     }
@@ -887,15 +887,15 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
         let group = grouped[date];
         let section = document.createElement('div');
         section.className = "modern-card overflow-hidden shadow-xs";
-        let header = `<div class="bg-white px-4 py-2.5 text-xs flex justify-between font-bold border-b border-slate-200 text-slate-900"><span>${formatFormattedDate(date)}</span><span class="text-emerald-700 font-black">Untung ${formatRp(group.dayUntung)}</span></div>`;
+        let header = `<div class="bg-white/60 backdrop-blur-md px-4 py-2.5 text-xs flex justify-between font-bold border-b border-slate-200 text-slate-900"><span>${formatFormattedDate(date)}</span><span class="text-emerald-700 font-black">Untung ${formatRp(group.dayUntung)}</span></div>`;
         
         let itemsHtml = group.items.map(item => `
-          <div onclick="openDetailCatatanById('${item.id}')" class="p-3.5 border-b border-slate-200 last:border-b-0 flex justify-between items-start text-xs cursor-pointer hover:bg-slate-50 transition-colors">
+          <div onclick="openDetailCatatanById('${item.id}')" class="p-3.5 border-b border-slate-200 last:border-b-0 flex justify-between items-start text-xs cursor-pointer hover:bg-white/50 backdrop-blur-sm transition-colors">
             <div>
               <div class="font-bold text-slate-900 text-xs">${item.catatan || item.kategori}</div>
               <div class="text-slate-600 text-[11px] mt-1 flex items-center gap-1.5 flex-wrap">
                 <span>${item.kategori || 'Umum'} ${item.subKategori ? '• ' + item.subKategori : ''}</span>
-                ${item.status === 'Belum Lunas' ? '<span class="bg-rose-50 text-rose-700 border border-rose-200 px-2 py-0.5 rounded-md text-[10px] font-bold">Belum lunas</span>' : ''}
+                ${item.status === 'Belum Lunas' ? '<span class="bg-rose-50/90 backdrop-blur-sm text-rose-700 border border-rose-200 px-2 py-0.5 rounded-md text-[10px] font-bold">Belum lunas</span>' : ''}
               </div>
             </div>
             <div class="text-right">
@@ -948,7 +948,7 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
       document.querySelectorAll('.hp-filter-btn').forEach(btn => {
         btn.className = btn.dataset.hpfilter === filter ? 
           "hp-filter-btn bg-indigo-600 border border-indigo-600 text-white px-3.5 py-1.5 rounded-xl font-bold text-xs shadow-xs" : 
-          "hp-filter-btn bg-white border border-slate-200 text-slate-700 px-3.5 py-1.5 rounded-xl font-medium hover:bg-slate-50 text-xs shadow-xs";
+          "hp-filter-btn bg-white/80 backdrop-blur-sm border border-slate-200 text-slate-700 px-3.5 py-1.5 rounded-xl font-medium hover:bg-slate-50 text-xs shadow-xs";
       });
       renderHutang();
     }
@@ -1015,9 +1015,9 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
         let initial = (nama && nama.length > 0) ? nama.charAt(0).toUpperCase() : '?';
         
         container.innerHTML += `
-          <div onclick="openDetailCatatanById('${firstItem.id}')" class="p-3.5 flex justify-between items-center text-xs cursor-pointer hover:bg-slate-50 transition-colors">
+          <div onclick="openDetailCatatanById('${firstItem.id}')" class="p-3.5 flex justify-between items-center text-xs cursor-pointer hover:bg-white/50 backdrop-blur-sm transition-colors">
             <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-xl ${firstItem.jenis === 'hutang_saya' ? 'bg-amber-50 text-amber-700 border border-amber-200' : 'bg-rose-50 text-rose-700 border border-rose-200'} font-bold flex items-center justify-center text-xs shadow-xs">${initial}</div>
+              <div class="w-9 h-9 rounded-xl ${firstItem.jenis === 'hutang_saya' ? 'bg-amber-50/90 backdrop-blur-sm text-amber-700 border border-amber-200' : 'bg-rose-50/90 backdrop-blur-sm text-rose-700 border border-rose-200'} font-bold flex items-center justify-center text-xs shadow-xs">${initial}</div>
               <div>
                 <div class="font-bold text-slate-900 text-xs">${nama}</div>
                 <div class="text-[11px] text-slate-500 mt-0.5">${firstItem.jenis === 'hutang_saya' ? 'Hutang Saya' : 'Hutang Pelanggan'}</div>
@@ -1037,7 +1037,7 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
       document.querySelectorAll('.an-filter-btn').forEach(btn => {
         btn.className = btn.dataset.anfilter === filter ? 
           "an-filter-btn bg-indigo-600 border border-indigo-600 text-white px-4 py-2 rounded-xl font-bold whitespace-nowrap shrink-0 text-xs shadow-md shadow-indigo-600/20" : 
-          "an-filter-btn bg-white border border-slate-200 text-slate-700 px-4 py-2 rounded-xl whitespace-nowrap hover:bg-slate-50 shrink-0 text-xs shadow-xs";
+          "an-filter-btn bg-white/80 backdrop-blur-sm border border-slate-200 text-slate-700 px-4 py-2 rounded-xl whitespace-nowrap hover:bg-slate-50 shrink-0 text-xs shadow-xs";
       });
       
       let labelMap = {
@@ -1298,13 +1298,13 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
         let safeId = mainKat.replace(/[^a-zA-Z0-9]/g, '_');
         
         let subsHtml = subs.map(sub => `
-          <div class="py-2.5 pl-10 pr-3 flex justify-between items-center text-xs text-slate-700 hover:bg-slate-100 border-t border-slate-200">
+          <div class="py-2.5 pl-10 pr-3 flex justify-between items-center text-xs text-slate-700 hover:bg-slate-100/85 border-t border-slate-200">
             <span class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-[10px] text-indigo-600"></i> ${sub}</span>
             <div class="flex items-center gap-1.5">
-              <button onclick="openFormKategoriEditSub('${mainKat}', '${sub}')" class="w-6 h-6 bg-white text-indigo-700 rounded-lg flex items-center justify-center border border-slate-200 hover:bg-slate-100 transition-all no-std-btn shadow-xs" title="Edit Sub">
+              <button onclick="openFormKategoriEditSub('${mainKat}', '${sub}')" class="w-6 h-6 bg-white/80 backdrop-blur-sm text-indigo-700 rounded-lg flex items-center justify-center border border-slate-200 hover:bg-slate-100 transition-all no-std-btn shadow-xs" title="Edit Sub">
                 <i class="fa-solid fa-pen text-[9px]"></i>
               </button>
-              <button onclick="hapusSubKategori('${mainKat}', '${sub}')" class="w-6 h-6 bg-rose-50 text-rose-600 rounded-lg flex items-center justify-center border border-rose-200 hover:bg-rose-100 transition-all no-std-btn shadow-xs" title="Hapus Sub">
+              <button onclick="hapusSubKategori('${mainKat}', '${sub}')" class="w-6 h-6 bg-rose-50/90 backdrop-blur-sm text-rose-600 rounded-lg flex items-center justify-center border border-rose-200 hover:bg-rose-100 transition-all no-std-btn shadow-xs" title="Hapus Sub">
                 <i class="fa-solid fa-trash text-[9px]"></i>
               </button>
             </div>
@@ -1315,7 +1315,7 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
           <div class="py-3 border-b border-slate-200 last:border-b-0">
             <div class="flex justify-between items-center">
               <div class="flex items-center gap-3 cursor-pointer select-none flex-1" onclick="toggleSubKategori('${safeId}')">
-                <div class="w-8 h-8 rounded-xl bg-white text-indigo-700 flex items-center justify-center text-xs border border-slate-200 shadow-xs">
+                <div class="w-8 h-8 rounded-xl bg-white/80 backdrop-blur-sm text-indigo-700 flex items-center justify-center text-xs border border-slate-200 shadow-xs">
                   <i class="fa-solid ${iconClass} text-xs"></i>
                 </div>
                 <div>
@@ -1324,18 +1324,18 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
                 </div>
               </div>
               <div class="flex items-center gap-1.5">
-                <button onclick="openFormKategoriTambahSub('${mainKat}')" class="px-2.5 py-1.5 bg-emerald-50 text-emerald-700 rounded-xl font-semibold text-[10px] border border-emerald-200 hover:bg-emerald-100 transition-all no-std-btn shadow-xs" title="Tambah Sub">
+                <button onclick="openFormKategoriTambahSub('${mainKat}')" class="px-2.5 py-1.5 bg-emerald-50/90 backdrop-blur-sm text-emerald-700 rounded-xl font-semibold text-[10px] border border-emerald-200 hover:bg-emerald-100 transition-all no-std-btn shadow-xs" title="Tambah Sub">
                   <i class="fa-solid fa-plus text-[9px]"></i> Sub
                 </button>
-                <button onclick="openFormKategoriEditUtama('${mainKat}')" class="w-7 h-7 bg-white text-indigo-700 rounded-xl flex items-center justify-center border border-slate-200 hover:bg-slate-100 transition-all no-std-btn shadow-xs" title="Edit">
+                <button onclick="openFormKategoriEditUtama('${mainKat}')" class="w-7 h-7 bg-white/80 backdrop-blur-sm text-indigo-700 rounded-xl flex items-center justify-center border border-slate-200 hover:bg-slate-100 transition-all no-std-btn shadow-xs" title="Edit">
                   <i class="fa-solid fa-pen text-xs"></i>
                 </button>
-                <button onclick="hapusKategoriUtama('${mainKat}')" class="w-7 h-7 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center border border-rose-200 hover:bg-slate-100 transition-all no-std-btn shadow-xs" title="Hapus">
+                <button onclick="hapusKategoriUtama('${mainKat}')" class="w-7 h-7 bg-rose-50/90 backdrop-blur-sm text-rose-600 rounded-xl flex items-center justify-center border border-rose-200 hover:bg-slate-100 transition-all no-std-btn shadow-xs" title="Hapus">
                   <i class="fa-solid fa-trash text-xs"></i>
                 </button>
               </div>
             </div>
-            <div id="subContainer_${safeId}" class="mt-2.5 bg-white rounded-2xl overflow-hidden border border-slate-200 hidden shadow-xs">${subsHtml}</div>
+            <div id="subContainer_${safeId}" class="mt-2.5 bg-white/50 backdrop-blur-md rounded-2xl overflow-hidden border border-slate-200 hidden shadow-xs">${subsHtml}</div>
           </div>
         `;
       });
@@ -1474,8 +1474,8 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
       let statusEl = document.getElementById('dtStatus');
       statusEl.innerText = item.status;
       statusEl.className = item.status === 'Belum Lunas' ? 
-        "bg-rose-50 text-rose-700 border border-rose-200 text-xs font-bold px-2.5 py-0.5 rounded-lg" : 
-        "bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold px-2.5 py-0.5 rounded-lg";
+        "bg-rose-50/90 backdrop-blur-sm text-rose-700 border border-rose-200 text-xs font-bold px-2.5 py-0.5 rounded-lg" : 
+        "bg-emerald-50/90 backdrop-blur-sm text-emerald-700 border border-emerald-200 text-xs font-bold px-2.5 py-0.5 rounded-lg";
 
       let nominal = item.pemasukan || item.pengeluaran || item.modal || 0;
       document.getElementById('dtPemasukan').innerText = formatRp(nominal);
@@ -1760,7 +1760,7 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
         subTitle.innerText = "Transaksi tercatat sebagai hutang";
         footerMsg.innerText = "Transaksi tertunda ⏳";
         badge.innerText = "Belum Lunas";
-        badge.className = "bg-rose-50 text-rose-700 font-extrabold px-2.5 py-0.5 rounded-md text-[10px] border border-rose-200";
+        badge.className = "bg-rose-50/90 backdrop-blur-sm text-rose-700 font-extrabold px-2.5 py-0.5 rounded-md text-[10px] border border-rose-200";
         iconBg.className = "w-12 h-12 rounded-full bg-rose-100 border-2 border-rose-200 text-rose-600 flex items-center justify-center text-base shadow-inner";
         icon.className = "fa-solid fa-clock";
       } else {
@@ -1768,7 +1768,7 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
         subTitle.innerText = "Transaksi telah selesai diproses";
         footerMsg.innerText = "Transaksi berhasil 🎉";
         badge.innerText = "Lunas";
-        badge.className = "bg-emerald-50 text-emerald-700 font-extrabold px-2.5 py-0.5 rounded-md text-[10px] border border-emerald-200";
+        badge.className = "bg-emerald-50/90 backdrop-blur-sm text-emerald-700 font-extrabold px-2.5 py-0.5 rounded-md text-[10px] border border-emerald-200";
         iconBg.className = "w-12 h-12 rounded-full bg-emerald-100 border-2 border-emerald-200 text-emerald-600 flex items-center justify-center text-base shadow-inner";
         icon.className = "fa-solid fa-check";
       }
@@ -1907,13 +1907,13 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
       currentStatus = status;
       if (status === 'Lunas') {
         document.getElementById('btnStatusLunas').className = "py-2.5 border border-indigo-600 rounded-xl font-semibold text-xs bg-indigo-600 text-white shadow-md no-std-btn";
-        document.getElementById('btnStatusBelumLunas').className = "py-2.5 border border-slate-200 rounded-xl font-semibold text-xs text-slate-700 bg-white hover:bg-slate-50 no-std-btn shadow-xs";
+        document.getElementById('btnStatusBelumLunas').className = "py-2.5 border border-slate-200 rounded-xl font-semibold text-xs text-slate-700 bg-white/80 backdrop-blur-sm hover:bg-slate-50 no-std-btn shadow-xs";
         if (currentFormType !== 'hutang_saya') {
           document.getElementById('groupPelanggan').classList.add('hidden');
         }
       } else {
         document.getElementById('btnStatusBelumLunas').className = "py-2.5 border border-indigo-600 rounded-xl font-semibold text-xs bg-indigo-600 text-white shadow-md no-std-btn";
-        document.getElementById('btnStatusLunas').className = "py-2.5 border border-slate-200 rounded-xl font-semibold text-xs text-slate-700 bg-white hover:bg-slate-50 no-std-btn shadow-xs";
+        document.getElementById('btnStatusLunas').className = "py-2.5 border border-slate-200 rounded-xl font-semibold text-xs text-slate-700 bg-white/80 backdrop-blur-sm hover:bg-slate-50 no-std-btn shadow-xs";
         document.getElementById('groupPelanggan').classList.remove('hidden');
       }
     }
@@ -2018,7 +2018,7 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
               <div class="text-[11px] text-slate-600 mt-0.5"><span class="text-emerald-700 font-semibold">${formatRp(item.harga)}</span> x ${item.qty} = <span class="text-emerald-700 font-bold">${formatRp(subJual)}</span></div>
             </div>
             <div class="flex items-center gap-1.5">
-              <button type="button" onclick="updateCartQty('${item.id}', -1)" class="w-6 h-6 bg-white rounded-lg font-bold text-slate-700 flex items-center justify-center hover:bg-slate-100 no-std-btn border border-slate-200 shadow-xs">-</button>
+              <button type="button" onclick="updateCartQty('${item.id}', -1)" class="w-6 h-6 bg-white/80 backdrop-blur-sm rounded-lg font-bold text-slate-700 flex items-center justify-center hover:bg-slate-100 no-std-btn border border-slate-200 shadow-xs">-</button>
               <span class="font-bold w-5 text-center text-slate-900">${Number(item.qty).toLocaleString('id-ID')}</span>
               <button type="button" onclick="updateCartQty('${item.id}', 1)" class="w-6 h-6 bg-indigo-600 text-white rounded-lg font-bold flex items-center justify-center shadow-md no-std-btn">+</button>
             </div>
@@ -2097,7 +2097,7 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
               <div class="text-[11px] text-slate-600 mt-0.5"><span class="text-emerald-700 font-semibold">${formatRp(item.harga)}</span> x ${item.qty} = <span class="text-emerald-700 font-bold">${formatRp(subJual)}</span></div>
             </div>
             <div class="flex items-center gap-1.5">
-              <button type="button" onclick="updateKasirQty('${item.id}', -1)" class="w-6 h-6 bg-white rounded-lg font-bold text-slate-700 flex items-center justify-center hover:bg-slate-100 no-std-btn border border-slate-200 shadow-xs">-</button>
+              <button type="button" onclick="updateKasirQty('${item.id}', -1)" class="w-6 h-6 bg-white/80 backdrop-blur-sm rounded-lg font-bold text-slate-700 flex items-center justify-center hover:bg-slate-100 no-std-btn border border-slate-200 shadow-xs">-</button>
               <span class="font-bold w-5 text-center text-slate-900">${Number(item.qty).toLocaleString('id-ID')}</span>
               <button type="button" onclick="updateKasirQty('${item.id}', 1)" class="w-6 h-6 bg-emerald-600 text-white rounded-lg font-bold flex items-center justify-center shadow-md no-std-btn">+</button>
             </div>
@@ -2308,7 +2308,7 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
       } else {
         paginatedItems.forEach(p => {
           let jualVal = Number(p.hargaJual !== undefined ? p.hargaJual : (p.harga || 0));
-          let favBadge = p.favorit ? '<span class="text-[10px] text-pink-600 bg-pink-50 px-1.5 py-0.5 rounded border border-pink-200 font-bold ml-1">★ Fav</span>' : '';
+          let favBadge = p.favorit ? '<span class="text-[10px] text-pink-600 bg-pink-50/90 backdrop-blur-sm px-1.5 py-0.5 rounded border border-pink-200 font-bold ml-1">★ Fav</span>' : '';
           container.innerHTML += `
             <div onclick="addToKasirCartById('${p.id}')" class="modern-card p-3 flex flex-col justify-between cursor-pointer border border-slate-200 hover:border-emerald-500 hover:shadow-md transition-all">
               <div>
@@ -2316,7 +2316,7 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
               </div>
               <div class="pt-2 flex justify-between items-end">
                 <span class="text-emerald-700 font-black text-xs">${formatRp(jualVal)}</span>
-                <span class="w-5 h-5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 shadow-xs"><i class="fa-solid fa-cart-shopping"></i></span>
+                <span class="w-5 h-5 bg-emerald-50/90 backdrop-blur-sm text-emerald-700 border border-emerald-200 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 shadow-xs"><i class="fa-solid fa-cart-shopping"></i></span>
               </div>
             </div>
           `;
@@ -2373,9 +2373,9 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
         favItems.forEach(p => {
           let jualVal = Number(p.hargaJual !== undefined ? p.hargaJual : (p.harga || 0));
           favContainer.innerHTML += `
-            <div onclick="addToCartViaListById('${p.id}')" class="py-2.5 flex justify-between items-center hover:bg-slate-50 cursor-pointer transition-colors px-2 text-xs">
+            <div onclick="addToCartViaListById('${p.id}')" class="py-2.5 flex justify-between items-center hover:bg-slate-50/80 backdrop-blur-sm cursor-pointer transition-colors px-2 text-xs">
               <div>
-                <div class="font-bold text-slate-900">${p.nama} <span class="text-[10px] text-pink-600 bg-pink-50 px-1.5 py-0.5 rounded border border-pink-200 font-bold ml-1">★ Fav</span></div>
+                <div class="font-bold text-slate-900">${p.nama} <span class="text-[10px] text-pink-600 bg-pink-50/90 backdrop-blur-sm px-1.5 py-0.5 rounded border border-pink-200 font-bold ml-1">★ Fav</span></div>
                 <div class="text-[11px] text-slate-600 mt-0.5">${p.kategori || 'Umum'}</div>
               </div>
               <div class="text-right font-bold text-emerald-700">${formatRp(jualVal)}</div>
@@ -2397,7 +2397,7 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
         paginatedItems.forEach(p => {
           let jualVal = Number(p.hargaJual !== undefined ? p.hargaJual : (p.harga || 0));
           otherContainer.innerHTML += `
-            <div onclick="addToCartViaListById('${p.id}')" class="py-2.5 flex justify-between items-center hover:bg-slate-50 cursor-pointer transition-colors px-2 text-xs">
+            <div onclick="addToCartViaListById('${p.id}')" class="py-2.5 flex justify-between items-center hover:bg-slate-50/80 backdrop-blur-sm cursor-pointer transition-colors px-2 text-xs">
               <div>
                 <div class="font-bold text-slate-900">${p.nama}</div>
                 <div class="text-[11px] text-slate-600 mt-0.5">${p.kategori || 'Umum'}</div>
@@ -2465,20 +2465,20 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
           let beliVal = Number(p.hargaBeli !== undefined ? p.hargaBeli : (p.modal || 0));
           let jual = formatRp(jualVal);
           let mdl = formatRp(beliVal);
-          let favBadge = p.favorit ? '<span class="text-[10px] text-pink-600 bg-pink-50 px-1.5 py-0.5 rounded border border-pink-200 font-bold ml-1">★ Fav</span>' : '';
+          let favBadge = p.favorit ? '<span class="text-[10px] text-pink-600 bg-pink-50/90 backdrop-blur-sm px-1.5 py-0.5 rounded border border-pink-200 font-bold ml-1">★ Fav</span>' : '';
 
           otherContainer.innerHTML += `
-            <div class="py-3 flex justify-between items-center hover:bg-slate-50 transition-colors px-2">
+            <div class="py-3 flex justify-between items-center hover:bg-white/50 backdrop-blur-sm transition-colors px-2">
               <div class="flex-1">
                 <div class="text-xs font-bold text-slate-900">${p.nama} ${favBadge}</div>
                 <div class="text-[11px] text-slate-600 mt-0.5">${kat}</div>
                 <div class="text-[11px] text-slate-600 mt-0.5">Jual: <span class="text-emerald-700 font-bold">${jual}</span> | Modal: <span class="text-rose-600 font-bold">${mdl}</span></div>
               </div>
               <div class="flex items-center gap-2">
-                <button onclick="addToCartViaListById('${p.id}')" class="px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-xl text-xs font-bold hover:bg-emerald-100 transition-all no-std-btn shadow-xs flex items-center gap-1" title="Tambah ke Keranjang">
+                <button onclick="addToCartViaListById('${p.id}')" class="px-3 py-1.5 bg-emerald-50/90 backdrop-blur-sm text-emerald-700 border border-emerald-200 rounded-xl text-xs font-bold hover:bg-emerald-100 transition-all no-std-btn shadow-xs flex items-center gap-1" title="Tambah ke Keranjang">
                   <i class="fa-solid fa-cart-shopping text-xs"></i><span>Beli</span>
                 </button>
-                <button onclick="editProdukById('${p.id}')" class="w-8 h-8 bg-white text-indigo-700 rounded-xl flex items-center justify-center border border-slate-200 hover:bg-slate-50 transition-all no-std-btn shadow-xs" title="Ubah">
+                <button onclick="editProdukById('${p.id}')" class="w-8 h-8 bg-white/80 backdrop-blur-sm text-indigo-700 rounded-xl flex items-center justify-center border border-slate-200 hover:bg-slate-50 transition-all no-std-btn shadow-xs" title="Ubah">
                   <i class="fa-solid fa-pen text-xs"></i>
                 </button>
               </div>
@@ -2510,17 +2510,17 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
           let mdl = formatRp(beliVal);
 
           favContainer.innerHTML += `
-            <div class="py-3 flex justify-between items-center hover:bg-slate-50 transition-colors px-2">
+            <div class="py-3 flex justify-between items-center hover:bg-white/50 backdrop-blur-sm transition-colors px-2">
               <div class="flex-1">
-                <div class="text-xs font-bold text-slate-900">${p.nama} <span class="text-[10px] text-pink-600 bg-pink-50 px-1.5 py-0.5 rounded border border-pink-200 font-bold ml-1">★ Fav</span></div>
+                <div class="text-xs font-bold text-slate-900">${p.nama} <span class="text-[10px] text-pink-600 bg-pink-50/90 backdrop-blur-sm px-1.5 py-0.5 rounded border border-pink-200 font-bold ml-1">★ Fav</span></div>
                 <div class="text-[11px] text-slate-600 mt-0.5">${kat}</div>
                 <div class="text-[11px] text-slate-600 mt-0.5">Jual: <span class="text-emerald-700 font-bold">${jual}</span> | Modal: <span class="text-rose-600 font-bold">${mdl}</span></div>
               </div>
               <div class="flex items-center gap-2">
-                <button onclick="addToCartViaListById('${p.id}')" class="px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-xl text-xs font-bold hover:bg-emerald-100 transition-all no-std-btn shadow-xs flex items-center gap-1" title="Tambah ke Keranjang">
+                <button onclick="addToCartViaListById('${p.id}')" class="px-3 py-1.5 bg-emerald-50/90 backdrop-blur-sm text-emerald-700 border border-emerald-200 rounded-xl text-xs font-bold hover:bg-emerald-100 transition-all no-std-btn shadow-xs flex items-center gap-1" title="Tambah ke Keranjang">
                   <i class="fa-solid fa-cart-shopping text-xs"></i><span>Beli</span>
                 </button>
-                <button onclick="editProdukById('${p.id}')" class="w-8 h-8 bg-white text-indigo-700 rounded-xl flex items-center justify-center border border-slate-200 hover:bg-slate-50 transition-all no-std-btn shadow-xs" title="Ubah">
+                <button onclick="editProdukById('${p.id}')" class="w-8 h-8 bg-white/80 backdrop-blur-sm text-indigo-700 rounded-xl flex items-center justify-center border border-slate-200 hover:bg-slate-50 transition-all no-std-btn shadow-xs" title="Ubah">
                   <i class="fa-solid fa-pen text-xs"></i>
                 </button>
               </div>
@@ -2725,7 +2725,7 @@ let GOOGLE_APPS_SCRIPT_URL = localStorage.getItem('tokosiman_gas_url') || "https
       }
 
       showLoading("Menyimpan catatan...", "Mengunggah data ke Google Sheets");
-await dbSaveTransaction(payload);
+      await dbSaveTransaction(payload);
       hideLoading();
 
       closeModal('modalTambahCatatan');
