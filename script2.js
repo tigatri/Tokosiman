@@ -2641,7 +2641,7 @@ function renderProdukList() {
       <div onclick='addToCart(${JSON.stringify(p)})' class="py-2.5 flex justify-between items-center text-xs cursor-pointer hover:bg-slate-50 transition-colors">
         <div>
           <div class="font-bold text-slate-900">${p.nama}</div>
-          <div class="text-[10px] text-slate-500 mt-0.5"><span class="text-emerald-700 font-bold">${formatRp(jual)}</span> • Untung ${formatRp(untung(untung)}</div>
+          <div class="text-[10px] text-slate-500 mt-0.5"><span class="text-emerald-700 font-bold">${formatRp(jual)}</span> • Untung ${formatRp(ung(untung)}</div>
         </div>
         <div class="flex items-center gap-1">
           <button type="button" onclick="event.stopPropagation(); openEditProduk('${safeId}')" class="w-6 h-6 bg-white/80 backdrop-blur-sm text-indigo-700 rounded flex items-center justify-center border border-slate-200 hover:bg-slate-100 no-std-btn shadow-xs"><i class="fa-solid fa-pen text-[10px]"></i></button>
